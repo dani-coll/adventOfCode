@@ -11,10 +11,12 @@ rl.on('line', (input) => {
 });
 
 rl.on('close', () => {
-    console.log(maxElf);
+    console.log(top1Elf + top2Elf + top3Elf);
 });
 
-let maxElf = 0;
+let top1Elf = 0;
+let top2Elf = 0;
+let top3Elf = 0;
 let currentElf = 0;
 
 function processLine(input) {
@@ -24,7 +26,17 @@ function processLine(input) {
 
     currentElf += Number(input);
 
-    if (currentElf > maxElf) {
-        maxElf = currentElf;
+    if (currentElf > top3Elf) {
+        top3Elf = currentElf;
+    }
+    if (top3Elf > top2Elf) {
+        let tmp = top3Elf;
+        top3Elf = top2Elf;
+        top2Elf = tmp;
+    }
+    if (top2Elf > top1Elf) {
+        let tmp = top2Elf;
+        top2Elf = top1Elf;
+        top1Elf = tmp;
     }
 }
